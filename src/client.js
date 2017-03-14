@@ -175,6 +175,10 @@ class Client extends EventEmitter {
    */
   _initialize() {
     return this._sessionPromise.then(() => {
+        this._notifications.subscribe('twilio.channel.new_message', 'apn');
+        this._notifications.subscribe('twilio.channel.added_to_channel', 'apn');
+        this._notifications.subscribe('twilio.channel.invited_to_channel', 'apn');
+
         this._notifications.subscribe('twilio.channel.new_message', 'gcm');
         this._notifications.subscribe('twilio.channel.added_to_channel', 'gcm');
         this._notifications.subscribe('twilio.channel.invited_to_channel', 'gcm');
@@ -300,7 +304,7 @@ class Client extends EventEmitter {
    * @private
    */
   setPushRegistrationId(registrationId, type) {
-    this._notification.setPushRegistrationId(registrationId, type || 'gcm');
+    this._notifications.setPushRegistrationId(registrationId, type || 'gcm');
   }
 
   /**
