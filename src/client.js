@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('INSIDEEEEEEEEEEEE')
-
 const EventEmitter = require('events').EventEmitter;
 const log = require('./logger');
 
